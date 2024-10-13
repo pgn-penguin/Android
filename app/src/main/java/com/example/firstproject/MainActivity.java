@@ -12,7 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 import android.widget.Toast;
-
+//test
 public class MainActivity extends AppCompatActivity {
     private EditText editTextText;
     private EditText editTextText2;
