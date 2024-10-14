@@ -66,7 +66,8 @@ public class MainActivity extends AppCompatActivity {
             double num3 = num + num2;
             textView.setText(""+num3);
             textView2.setText("+");
-            Toast.makeText(MainActivity.this, "計算成功", Toast.LENGTH_SHORT).show();
+            Toast toast = Toast.makeText(MainActivity.this, "計算成功", Toast.LENGTH_SHORT);
+            toast.show();
         }
     };
     private Button.OnClickListener buttonTranListener2=new Button.OnClickListener(){
@@ -76,7 +77,8 @@ public class MainActivity extends AppCompatActivity {
             double num3 = num - num2;
             textView.setText(""+num3);
             textView2.setText("-");
-            Toast.makeText(MainActivity.this, "計算成功", Toast.LENGTH_SHORT).show();
+            Toast toast = Toast.makeText(MainActivity.this, "計算成功", Toast.LENGTH_SHORT);
+            toast.show();
         }
     };
     private Button.OnClickListener buttonTranListener3=new Button.OnClickListener(){
@@ -86,7 +88,8 @@ public class MainActivity extends AppCompatActivity {
             double num3 = num * num2;
             textView.setText(""+num3);
             textView2.setText("*");
-            Toast.makeText(MainActivity.this, "計算成功", Toast.LENGTH_SHORT).show();
+            Toast toast = Toast.makeText(MainActivity.this, "計算成功", Toast.LENGTH_SHORT);
+            toast.show();
         }
     };
     private Button.OnClickListener buttonTranListener4=new Button.OnClickListener(){
@@ -96,7 +99,8 @@ public class MainActivity extends AppCompatActivity {
             double num3 = num / num2;
             textView.setText(""+num3);
             textView2.setText("/");
-            Toast.makeText(MainActivity.this, "計算成功", Toast.LENGTH_SHORT).show();
+            Toast toast = Toast.makeText(MainActivity.this, "計算成功", Toast.LENGTH_SHORT);
+            toast.show();
         }
     };
 
@@ -112,7 +116,8 @@ public class MainActivity extends AppCompatActivity {
                             editTextText2.setText("");
                             textView.setText("結果");
                             textView2.setText("");
-                            Toast.makeText(MainActivity.this, "已清除", Toast.LENGTH_SHORT).show();
+                            Toast toast = Toast.makeText(MainActivity.this, "已清除", Toast.LENGTH_SHORT);
+                            toast.show();
                         }
                     })
                     .setNegativeButton("取消", null)
