@@ -1,17 +1,20 @@
 package com.example.firstproject;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ToggleButton;
+
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.ToggleButton;
-import android.widget.Toast;
 //test
 public class MainActivity extends AppCompatActivity {
     private EditText editTextText;
@@ -22,7 +25,9 @@ public class MainActivity extends AppCompatActivity {
     private Button button2;
     private Button button3;
     private Button button4;
+    private Button button5;
     private ToggleButton toggleButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,17 +39,18 @@ public class MainActivity extends AppCompatActivity {
         editTextText2=(EditText)findViewById(R.id.editTextText2);
         textView=(TextView)findViewById(R.id.textView);
         textView2=(TextView)findViewById(R.id.textView2);
-
         button=(Button)findViewById(R.id.button);
         button2=(Button)findViewById(R.id.button2);
         button3=(Button)findViewById(R.id.button3);
         button4=(Button)findViewById(R.id.button4);
+        button5=(Button)findViewById(R.id.button5);
         toggleButton = (ToggleButton) findViewById(R.id.toggleButton);
 
         button.setOnClickListener(buttonTranListener);
         button2.setOnClickListener(buttonTranListener2);
         button3.setOnClickListener(buttonTranListener3);
         button4.setOnClickListener(buttonTranListener4);
+        button5.setOnClickListener(resetButtonListener);
         toggleButton.setOnClickListener(toggleButtonListener);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -93,6 +99,27 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(MainActivity.this, "計算成功", Toast.LENGTH_SHORT).show();
         }
     };
+
+    private Button.OnClickListener resetButtonListener=new Button.OnClickListener(){
+        public void onClick(View v) {
+            new AlertDialog.Builder(MainActivity.this)
+                    .setTitle("確認視窗")
+                    .setMessage("確定要清除嗎?")
+                    .setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            editTextText.setText("");
+                            editTextText2.setText("");
+                            textView.setText("結果");
+                            textView2.setText("");
+                            Toast.makeText(MainActivity.this, "已清除", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .setNegativeButton("取消", null)
+                    .show();
+        }
+    };
+
     private ToggleButton.OnClickListener toggleButtonListener=new ToggleButton.OnClickListener(){
         public void onClick(View v) {
             if(toggleButton.isChecked()){
