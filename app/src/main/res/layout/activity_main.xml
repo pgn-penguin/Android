@@ -10,34 +10,9 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/textView3"
-        android:layout_width="318dp"
-        android:layout_height="50dp"
-        android:text="你最想去旅遊的是哪個國家"
-        android:textAlignment="center"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.6" />
-
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="314dp"
-        android:layout_height="50dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.484"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.674" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="374dp"
-        android:layout_height="41dp"
+        android:id="@+id/textView2"
+        android:layout_width="377dp"
+        android:layout_height="78dp"
         android:text=""
         android:textAlignment="center"
         android:textColor="#3F51B5"
@@ -47,7 +22,7 @@
         app:layout_constraintHorizontal_bias="0.486"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.804" />
+        app:layout_constraintVertical_bias="0.715" />
 
     <TextView
         android:id="@+id/textView"
@@ -60,85 +35,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.07" />
+        app:layout_constraintVertical_bias="0.047" />
 
-    <TextView
-        android:id="@+id/textView2"
+    <ListView
+        android:id="@+id/listView"
         android:layout_width="404dp"
-        android:layout_height="42dp"
-        android:text=""
-        android:textAlignment="center"
-        android:textColor="#3F51B5"
-        android:textColorHint="#3F51B5"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="339dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="4dp"
+        android:listSelector="@drawable/selected"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toTopOf="@id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.428"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.416" />
+        app:layout_constraintTop_toBottomOf="@id/textView"
+        app:layout_constraintVertical_bias="0.139"
+        />
 
-    <RadioGroup
-        android:id="@+id/radioGroup1"
-        android:layout_width="240dp"
-        android:layout_height="197dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.185">
-
-        <RadioButton
-            android:id="@+id/radioButton1"
-            android:layout_width="match_parent"
-            android:layout_height="36dp"
-            android:background="@drawable/radio_button_style"
-            android:text="美國" />
-
-
-        <RadioButton
-            android:id="@+id/radioButton2"
-            android:layout_width="match_parent"
-            android:layout_height="36dp"
-            android:background="@drawable/radio_button_style"
-            android:text="日本" />
-
-        <RadioButton
-            android:id="@+id/radioButton3"
-            android:layout_width="match_parent"
-            android:layout_height="36dp"
-            android:background="@drawable/radio_button_style"
-            android:text="中國" />
-
-        <RadioButton
-            android:id="@+id/radioButton4"
-            android:layout_width="match_parent"
-            android:layout_height="36dp"
-            android:background="@drawable/radio_button_style"
-            android:text="韓國" />
-
-        <RadioButton
-            android:id="@+id/radioButton5"
-            android:layout_width="match_parent"
-            android:layout_height="36dp"
-            android:background="@drawable/radio_button_style"
-            android:text="泰國" />
-
-    </RadioGroup>
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="415dp"
-        android:layout_height="49dp"
-        android:text="-------------------------------"
-        android:textColor="#E91E63"
-        android:textSize="50sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.482" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

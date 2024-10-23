@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView android:id="@+id/flag"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerVertical="true"
+        android:layout_margin="10dp"
+        android:src="@drawable/usa" />
+
+    <TextView android:id="@+id/countryName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="2dp"
+        android:layout_toRightOf="@id/flag"
+        android:text="maintext"
+        android:textColor="#0000FF"
+        android:textSize="24dp" />
+
+    <TextView android:id="@+id/countryengName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:layout_below="@id/countryName"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@id/flag"
+        android:text="subtext"
+        android:textColor="#000000"
+        android:textSize="16dp" />
+
+</RelativeLayout>

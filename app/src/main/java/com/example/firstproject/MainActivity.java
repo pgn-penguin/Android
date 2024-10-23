@@ -1,12 +1,14 @@
 package com.example.firstproject;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.Spinner;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -16,13 +18,11 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
-    private RadioButton radioButton1, radioButton2, radioButton3, radioButton4, radioButton5;
-    private RadioGroup radioGroup1;
-    private TextView textView2, textView4;
-    private Spinner spinner;
-    String[] Countrys = new String[]{"(請選擇)", "美國", "日本", "中國", "韓國", "泰國"};
-
-
+    private TextView textView, textView2;
+    ListView listView;
+    int [] image = {R.drawable.usa, R.drawable.jp, R.drawable.cn, R.drawable.kr, R.drawable.thai};
+    String [] Countrys = {"美國", "日本", "中國", "韓國", "泰國"};
+    String [] engname = {"USA", "Japan", "China", "Korea", "Thailand"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,53 +34,58 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        radioGroup1 = (RadioGroup) findViewById(R.id.radioGroup1);
-        radioButton1 = (RadioButton) findViewById(R.id.radioButton1);
-        radioButton2 = (RadioButton) findViewById(R.id.radioButton2);
-        radioButton3 = (RadioButton) findViewById(R.id.radioButton3);
-        radioButton4 = (RadioButton) findViewById(R.id.radioButton4);
-        radioButton5 = (RadioButton) findViewById(R.id.radioButton5);
+
+        textView = (TextView) findViewById(R.id.textView);
         textView2 = (TextView) findViewById(R.id.textView2);
-        textView4 = (TextView) findViewById(R.id.textView4);
-        spinner = (Spinner) findViewById(R.id.spinner);
-        radioGroup1.setOnCheckedChangeListener(radioGroup1Listener);
-        spinner.setOnItemSelectedListener(spinnerListener);
+        listView = (ListView) findViewById(R.id.listView);
 
-
-        ArrayAdapter<String> Country = new ArrayAdapter<String>(this, R.layout.spinner_selected_shape, Countrys);
-        Country.setDropDownViewResource(R.layout.spinner_dropdown_shape);
-        spinner.setAdapter(Country);
+        MyAdapter Country = new MyAdapter(this);
+        listView.setAdapter(Country);
+        listView.setOnItemClickListener(listViewOnItemClick);
 
     }
-    private RadioGroup.OnCheckedChangeListener radioGroup1Listener = new RadioGroup.OnCheckedChangeListener() {
+    public class MyAdapter extends BaseAdapter{
+        private LayoutInflater myInflater;
+        public MyAdapter(Context c){
+            myInflater = LayoutInflater.from(c);
+        }
         @Override
-        public void onCheckedChanged(RadioGroup group, int checkedId) {
-            if (checkedId == R.id.radioButton1) {
-                textView2.setText("這五個國家當中最想去美國旅遊");
-            } else if (checkedId == R.id.radioButton2) {
-                textView2.setText("這五個國家當中最想去日本旅遊");
-            } else if (checkedId == R.id.radioButton3) {
-                textView2.setText("這五個國家當中最想去中國旅遊");
-            } else if (checkedId == R.id.radioButton4) {
-                textView2.setText("這五個國家當中最想去韓國旅遊");
-            } else if (checkedId == R.id.radioButton5) {
-                textView2.setText("這五個國家當中最想去泰國旅遊");
-            }
+        public int getCount() {
+            return Countrys.length;
+        }
+        @Override
+        public Object getItem(int position) {
+            return Countrys[position];
+        }
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            convertView = myInflater.inflate(R.layout.country_layout, null);
+            ImageView flag = (ImageView) convertView.findViewById(R.id.flag);
+            TextView country = (TextView) convertView.findViewById(R.id.countryName);
+            TextView countryengName = (TextView) convertView.findViewById(R.id.countryengName);
+
+            flag.setImageResource(image[position]);
+            country.setText(Countrys[position]);
+            countryengName.setText(engname[position]);
+
+
+            return convertView;
+        }
+
+    }
+
+    private ListView.OnItemClickListener listViewOnItemClick = new ListView.OnItemClickListener(){
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            view.setSelected(true);
+            String result = Countrys[position] + " " + engname[position];
+            textView2.setText("你所選的是" + result);
         }
     };
-    private Spinner.OnItemSelectedListener spinnerListener = new Spinner.OnItemSelectedListener() {
-        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-            String str = parent.getSelectedItem().toString();
-            if (str == "(請選擇)") {
-                textView4.setText("");
-            } else {
-                textView4.setText("最想去旅遊的國家是" + str);
-            }
 
-        }
 
-        public void onNothingSelected(AdapterView<?> parent) {
-            textView4.setText("");
-        }
-    };
 }
