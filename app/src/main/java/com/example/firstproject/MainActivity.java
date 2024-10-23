@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.CheckedTextView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -20,9 +21,9 @@ import androidx.core.view.WindowInsetsCompat;
 public class MainActivity extends AppCompatActivity {
     private TextView textView, textView2;
     ListView listView;
-    int [] image = {R.drawable.usa, R.drawable.jp, R.drawable.cn, R.drawable.kr, R.drawable.thai};
-    String [] Countrys = {"美國", "日本", "中國", "韓國", "泰國"};
-    String [] engname = {"USA", "Japan", "China", "Korea", "Thailand"};
+    int[] image = {R.drawable.usa, R.drawable.jp, R.drawable.cn, R.drawable.kr, R.drawable.thai};
+    String[] Countrys = {"美國", "日本", "中國", "韓國", "泰國"};
+    String[] engname = {"USA", "Japan", "China", "Korea", "Thailand"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,53 +40,76 @@ public class MainActivity extends AppCompatActivity {
         textView2 = (TextView) findViewById(R.id.textView2);
         listView = (ListView) findViewById(R.id.listView);
 
+
         MyAdapter Country = new MyAdapter(this);
         listView.setAdapter(Country);
         listView.setOnItemClickListener(listViewOnItemClick);
 
     }
-    public class MyAdapter extends BaseAdapter{
+
+    public class MyAdapter extends BaseAdapter {
         private LayoutInflater myInflater;
-        public MyAdapter(Context c){
+
+        public MyAdapter(Context c) {
             myInflater = LayoutInflater.from(c);
         }
+
         @Override
         public int getCount() {
             return Countrys.length;
         }
+
         @Override
         public Object getItem(int position) {
             return Countrys[position];
         }
+
         @Override
         public long getItemId(int position) {
             return position;
         }
+
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             convertView = myInflater.inflate(R.layout.country_layout, null);
             ImageView flag = (ImageView) convertView.findViewById(R.id.flag);
             TextView country = (TextView) convertView.findViewById(R.id.countryName);
             TextView countryengName = (TextView) convertView.findViewById(R.id.countryengName);
+            CheckedTextView checkedTextView = (CheckedTextView) convertView.findViewById(R.id.checkedTextView);
 
             flag.setImageResource(image[position]);
             country.setText(Countrys[position]);
             countryengName.setText(engname[position]);
 
+            checkedTextView.setChecked(listView.isItemChecked(position));
+
+            boolean isChecked = listView.isItemChecked(position);
+            checkedTextView.setChecked(isChecked);
+            if (isChecked) {
+                checkedTextView.setCheckMarkDrawable(R.drawable.checked);
+            } else {
+                checkedTextView.setCheckMarkDrawable(null);
+            }
 
             return convertView;
         }
 
     }
 
-    private ListView.OnItemClickListener listViewOnItemClick = new ListView.OnItemClickListener(){
+    private ListView.OnItemClickListener listViewOnItemClick = new ListView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            view.setSelected(true);
-            String result = Countrys[position] + " " + engname[position];
-            textView2.setText("你所選的是" + result);
+            CheckedTextView checkedTextView = view.findViewById(R.id.checkedTextView);
+            checkedTextView.toggle();
+
+            String all = "";
+            for (int i = 0; i < listView.getCount(); i++) {
+                if (listView.isItemChecked(i)) {
+                    all += Countrys[i] + " ";
+                }
+            }
+            textView2.setText("你選擇了:" + all);
+            ((BaseAdapter) listView.getAdapter()).notifyDataSetChanged();
         }
     };
-
-
 }
