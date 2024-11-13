@@ -3,6 +3,7 @@
     import android.content.Context;
     import android.content.Intent;
     import android.os.Bundle;
+    import android.view.ContextMenu;
     import android.view.LayoutInflater;
     import android.view.Menu;
     import android.view.MenuItem;
@@ -51,6 +52,8 @@
             listView.setAdapter(Country);
             listView.setOnItemClickListener(listViewOnItemClick);
             button.setOnClickListener(buttonOnClick);
+
+            registerForContextMenu(listView);
 
         }
 
@@ -152,4 +155,27 @@
             }
             return super.onOptionsItemSelected(item);
         }
+
+        String[] exchangeRates = {"1 USD = 32.72 TWD", "1 JPY = 0.2133 TWD", "1 CNY = 4.565 TWD", "1 KRW = 0.02534 TWD", "1 THB = 0.9979 TWD"};
+        @Override
+        public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+            super.onCreateContextMenu(menu, v, menuInfo);
+            if (v.getId() == R.id.listView) {
+                AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
+                menu.setHeaderTitle(Countrys[info.position]);
+                menu.add(Menu.NONE, 0, 0, "顯示當前匯率");
+            }
+        }
+
+        @Override
+        public boolean onContextItemSelected(MenuItem item) {
+            AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+            if (item.getItemId() == 0) {
+                String exchangeRate = exchangeRates[info.position];
+                Toast.makeText(this, exchangeRate, Toast.LENGTH_SHORT).show();
+                return true;
+            }
+            return super.onContextItemSelected(item);
+        }
+
     }
