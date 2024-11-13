@@ -1,12 +1,14 @@
     package com.example.firstproject;
 
     import android.content.Context;
+    import android.content.Intent;
     import android.os.Bundle;
     import android.view.LayoutInflater;
     import android.view.View;
     import android.view.ViewGroup;
     import android.widget.AdapterView;
     import android.widget.BaseAdapter;
+    import android.widget.Button;
     import android.widget.CheckedTextView;
     import android.widget.ImageView;
     import android.widget.ListView;
@@ -40,12 +42,15 @@
             textView = (TextView) findViewById(R.id.textView);
             textView2 = (TextView) findViewById(R.id.textView2);
             listView = (ListView) findViewById(R.id.listView);
+            Button button = (Button) findViewById(R.id.button);
 
             MyAdapter Country = new MyAdapter(this);
             listView.setAdapter(Country);
             listView.setOnItemClickListener(listViewOnItemClick);
+            button.setOnClickListener(buttonOnClick);
 
         }
+
         // 自訂介面設定
         public class MyAdapter extends BaseAdapter {
             private LayoutInflater myInflater;
@@ -99,6 +104,15 @@
             }
 
         }
+        // 跳轉至第二頁
+        private Button.OnClickListener buttonOnClick = new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(MainActivity.this, Second.class);
+                startActivity(intent);
+            }
+        };
 
         private ListView.OnItemClickListener listViewOnItemClick = new ListView.OnItemClickListener() {
             @Override
