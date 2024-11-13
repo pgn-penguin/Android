@@ -4,6 +4,8 @@
     import android.content.Intent;
     import android.os.Bundle;
     import android.view.LayoutInflater;
+    import android.view.Menu;
+    import android.view.MenuItem;
     import android.view.View;
     import android.view.ViewGroup;
     import android.widget.AdapterView;
@@ -13,6 +15,7 @@
     import android.widget.ImageView;
     import android.widget.ListView;
     import android.widget.TextView;
+    import android.widget.Toast;
 
     import androidx.activity.EdgeToEdge;
     import androidx.appcompat.app.AppCompatActivity;
@@ -130,4 +133,23 @@
                 ((BaseAdapter) listView.getAdapter()).notifyDataSetChanged();
             }
         };
+
+        @Override
+        public boolean onCreateOptionsMenu(Menu menu) {
+            getMenuInflater().inflate(R.menu.menu_main, menu);
+            return true;
+        }
+
+        @Override
+        public boolean onOptionsItemSelected(MenuItem item) {
+            int id = item.getItemId();
+            if (id == R.id.action_about) {
+                Toast.makeText(this, "目前處於Beta版本", Toast.LENGTH_LONG).show();
+                return true;
+            } else if (id == R.id.action_quit) {
+                finish();
+                return true;
+            }
+            return super.onOptionsItemSelected(item);
+        }
     }
