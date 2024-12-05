@@ -14,6 +14,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+// NOTE login檔案儲存至/data/data/com.example.firstproject/files/login.txt
+
 public class login extends AppCompatActivity {
     private EditText acc, psw;
 
@@ -29,6 +31,7 @@ public class login extends AppCompatActivity {
 
         button3.setOnClickListener(buttonOnClick);
         buttonRegister.setOnClickListener(buttonRegisterListener);
+
     }
 
     private Button.OnClickListener buttonOnClick = new Button.OnClickListener() {
